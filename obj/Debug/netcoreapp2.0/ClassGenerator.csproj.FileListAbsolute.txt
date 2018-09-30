@@ -1,0 +1,11 @@
+a:\bench\vscode\ClassGenerator\bin\Debug\netcoreapp2.0\ClassGenerator.deps.json
+a:\bench\vscode\ClassGenerator\bin\Debug\netcoreapp2.0\ClassGenerator.runtimeconfig.json
+a:\bench\vscode\ClassGenerator\bin\Debug\netcoreapp2.0\ClassGenerator.runtimeconfig.dev.json
+a:\bench\vscode\ClassGenerator\bin\Debug\netcoreapp2.0\ClassGenerator.dll
+a:\bench\vscode\ClassGenerator\bin\Debug\netcoreapp2.0\ClassGenerator.pdb
+a:\bench\vscode\ClassGenerator\obj\Debug\netcoreapp2.0\ClassGenerator.csprojAssemblyReference.cache
+a:\bench\vscode\ClassGenerator\obj\Debug\netcoreapp2.0\ClassGenerator.csproj.CoreCompileInputs.cache
+a:\bench\vscode\ClassGenerator\obj\Debug\netcoreapp2.0\ClassGenerator.AssemblyInfoInputs.cache
+a:\bench\vscode\ClassGenerator\obj\Debug\netcoreapp2.0\ClassGenerator.AssemblyInfo.cs
+a:\bench\vscode\ClassGenerator\obj\Debug\netcoreapp2.0\ClassGenerator.dll
+a:\bench\vscode\ClassGenerator\obj\Debug\netcoreapp2.0\ClassGenerator.pdb

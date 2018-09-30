@@ -1,0 +1,104 @@
+{
+    
+    "Path":"..\\..\\bnData\\",
+    "NamespacePrefix":"Data",
+    "Property":[{
+        "Visibility":"private",
+        "Type":"#CLASSOBJECT#",
+        "Initializers":"GET|SET",
+        "Singleton":"1",
+        "Name":"entLocal"
+    }],
+    "Method":[{
+        "Name":"CONSTRUCTOR",
+        "Visibility":"public",
+        "ReturnType":"NONE",
+        "SpecialAttribute":"NONE",
+        "AfterMethod":"NONE",
+        "MethodContent":"{}"
+    },{
+        "Name":"CONSTRUCTOR",
+        "Visibility":"public",
+        "ReturnType":"NONE",
+        "SpecialAttribute":"NONE",
+        "Parameter":[{
+            "Type":"Context",
+            "Name":"_context"
+        }],
+        "AfterMethod":":base(_context)",
+        "MethodContent":"{}"
+    },{
+        "Name":"ValidateData",
+        "Visibility":"internal",
+        "ReturnType":"IEntity",
+        "SpecialAttribute":"override",
+        "Parameter":[{
+            "Type":"IEntity",
+            "Name":"entToValidate"
+        }],
+        "AfterMethod":" => throw new System.NotImplementedException();",
+        "MethodContent":"NONE"
+    },{
+        "Name":"Save",
+        "Visibility":"public",
+        "ReturnType":"IEntity",
+        "SpecialAttribute":"override",
+        "Parameter":[{
+            "Type":"IEntity",
+            "Name":"entToSave"
+        }],
+        "AfterMethod":"NONE",
+        "MethodContent":"{\r\n\t\t\tentLocal = (#CLASSOBJECT#)ValidateData(base.Save(entToSave));\r\n\t\t\tif (lstValidations.Count > 0)\r\n\t\t\t{\r\n\t\t\t\tstring strValidations = \"\";\r\n\t\t\t\tforeach(var item in lstValidations)\r\n\t\t\t\t\tstrValidations += item + Environment.NewLine;\r\n\t\t\t\tthrow new InvalidDataException(strValidations);\r\n\t\t\t}\r\n\t\t\telse\r\n\t\t\t{\r\n\t\t\t\t\tentLocal.ConId = NewID();\r\n\t\t\t\t\tentLocal.userIDCreation = Context.loggedUser.UserId;\r\n\t\t\t\t\tentLocal.userIDLastChange = Context.loggedUser.UserId;\r\n\t\t\t\t\tentLocal.dtCreation = DateTime.Now;\r\n\t\t\t\t\tentLocal.dtLastChange = DateTime.Now;\r\n\t\t\t\t\tContext.Add(entLocal);\r\n\t\t\t\t\tContext.SaveChanges(); \r\n\t\t\t}\r\n\t\t\treturn entLocal; \r\n\t\t}"
+    },{
+        "Name":"Update",
+        "Visibility":"public",
+        "ReturnType":"IEntity",
+        "SpecialAttribute":"override",
+        "Parameter":[{
+            "Type":"IEntity",
+            "Name":"entToUpdate"
+        }],
+        "AfterMethod":"NONE",
+        "MethodContent":"{\r\n\t\t\tentLocal = (#CLASSOBJECT#)ValidateData(base.Update(entToUpdate));\r\n\t\t\tif (lstValidations.Count > 0)\r\n\t\t\t{\r\n\t\t\t\tstring strValidations = \"\";\r\n\t\t\t\tforeach(var item in lstValidations)\r\n\t\t\t\t\tstrValidations += item + Environment.NewLine;\r\n\t\t\t\tthrow new InvalidDataException(strValidations);\r\n\t\t\t }\r\n\t\t\t else\r\n\t\t\t {\r\n\t\t\t\tentLocal.userIDLastChange = Context.loggedUser.UserId;\r\n\t\t\t\tentLocal.dtLastChange = DateTime.Now;\r\n\t\t\t\tContext.#CLASSOBJECT#.Update(entLocal);\r\n\t\t\t\tContext.SaveChanges();\r\n\t\t\t}\r\n\t\t\treturn entLocal;\r\n\t\t}"
+    },{
+        "Name":"Delete",
+        "Visibility":"public",
+        "ReturnType":"bool",
+        "SpecialAttribute":"override",
+        "Parameter":[{
+            "Type":"IEntity",
+            "Name":"entToDelete"
+        }],
+        "AfterMethod":"NONE",
+        "MethodContent":"{\r\n\t\t\tentLocal = (#CLASSOBJECT#)entToDelete;\r\n\t\t\tvar isDeletable = base.Delete(entToDelete);\r\n\t\t\tif ((!isDeletable || lstValidations.Count > 0))\r\n\t\t\t{\r\n\t\t\t\tstring strValidations = \"\";\r\n\t\t\t\tforeach(var item in lstValidations)\r\n\t\t\t\t\tstrValidations += item + Environment.NewLine;\r\n\t\t\t\tthrow new InvalidDataException(strValidations);\r\n\t\t\t}\r\n\t\t\telse\r\n\t\t\t{\r\n\t\t\t \tisDeletable = Context.#CLASSOBJECT#.Remove(entLocal).State == EntityState.Deleted;\r\n\t\t\t}\r\n\t\t\treturn isDeletable;\r\n\t\t}"
+    },{
+        "Name":"GetAll",
+        "Visibility":"public",
+        "ReturnType":"IEnumerable<IEntity>",
+        "SpecialAttribute":"NONE",
+        "AfterMethod":" => Context.#CLASSOBJECT#.ToList();",
+        "MethodContent":""
+    },{
+        "Name":"Get",
+        "Visibility":"public",
+        "ReturnType":"IEntity",
+        "SpecialAttribute":"NONE",
+        "Parameter":[{
+            "Type":"string",
+            "Name":"_id"
+        }],
+        "AfterMethod":" => Context.#CLASSOBJECT#.Find(_id);",
+        "MethodContent":""
+    },{
+        "Name":"Get",
+        "Visibility":"public",
+        "ReturnType":"IEntity",
+        "SpecialAttribute":"NONE",
+        "Parameter":[{
+            "Type":"IEntity",
+            "Name":"entToSearch"
+        }],
+        "AfterMethod":"NONE",
+        "MethodContent":"{\r\n\t\t\tif (entToSearch.GetType().Equals(entLocal.GetType())){\r\n\t\t\t\tif (!string.IsNullOrEmpty(((#CLASSOBJECT#)entToSearch).ConId))\r\n\t\t\t\t\treturn Get(((#CLASSOBJECT#)entToSearch).ConId);\r\n\t\t\t\telse {\r\n\t\t\t\t\tentLocal = (#CLASSOBJECT#)entToSearch;\r\n\t\t\t\t\tif (entLocal.ConCode > 0)\r\n\t\t\t\t\t\treturn Context.#CLASSOBJECT#.Where(x=> x.ConCode.Equals(entLocal.ConCode)).FirstOrDefault();\r\n\t\t\t\t\tif (!string.IsNullOrEmpty(entLocal.ConFirstName) && !string.IsNullOrEmpty(entLocal.ConLastname))\r\n\t\t\t\t\t\treturn Context.#CLASSOBJECT#.Where(x=> x.ConLastname.Equals(entLocal.ConLastname) && x.ConFirstName.Equals(entLocal.ConFirstName)).FirstOrDefault();\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\treturn null;\r\n\t\t}"
+    }]
+}

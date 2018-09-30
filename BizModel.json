@@ -1,0 +1,95 @@
+{
+    "Path":"..\\..\\bnCommon\\",
+    "NamespacePrefix":"biz",
+    
+        "Property":[{
+            "Visibility":"private",
+            "Type":"IEntity",
+            "Initializers":"GET|SET",
+            "Singleton":"1",
+            "Name":"Entity"
+        },
+        {
+            "Visibility":"private",
+            "Type":"#DATALAYER#",
+            "Initializers":"GET|SET",
+            "Singleton":"1",
+            "Name":"DataLayer"
+        }],
+       "Method":[{
+            "Name":"CONSTRUCTOR",
+            "Visibility":"public",
+            "ReturnType":"NONE",
+            "SpecialAttribute":"NONE",
+            "AfterMethod":"NONE",
+            "MethodContent":"{}"
+        },
+        {
+            "Name":"CONSTRUCTOR",
+            "Visibility":"public",
+            "ReturnType":"NONE",
+            "SpecialAttribute":"NONE",
+            "Parameter":[{
+                    "Type":"Context",
+                    "Name":"_context"
+                }],
+            "AfterMethod":":base(_context)",
+            "MethodContent":"{}"
+        },
+        {
+            "Name":"Save",
+            "Visibility":"public",
+            "ReturnType":"IEntity",
+            "SpecialAttribute":"override",
+            "AfterMethod":"=> DataLayer.Save(Entity);",
+            "MethodContent":"NONE"
+        },
+        {
+            "Name":"Update",
+            "Visibility":"public",
+            "ReturnType":"IEntity",
+            "SpecialAttribute":"override",
+            "AfterMethod":"=> DataLayer.Update(Entity);",
+            "MethodContent":"NONE"
+        },
+        {
+            "Name":"Delete",
+            "Visibility":"public",
+            "ReturnType":"bool",
+            "SpecialAttribute":"override",
+            "AfterMethod":"=> DataLayer.Delete(Entity);",
+            "MethodContent":"NONE"
+        },
+        {
+            "Name":"RetrieveAll",
+            "Visibility":"public",
+            "ReturnType":"IEnumerable<IEntity>",
+            "SpecialAttribute":"override",
+            "AfterMethod":" => DataLayer.GetAll();",
+            "MethodContent":"NONE"
+        },
+        {
+            "Name":"RetrieveByID",
+            "Visibility":"public",
+            "ReturnType":"IEntity",
+            "SpecialAttribute":"override",
+            "Parameter":[{
+                    "Type":"string",
+                    "Name":"_id"
+                }],
+            "AfterMethod":" => DataLayer.Get(_id);",
+            "MethodContent":"NONE"
+        },
+        {
+            "Name":"RetrieveBySome",
+            "Visibility":"public",
+            "ReturnType":"IEntity",
+            "SpecialAttribute":"override",
+            "Parameter":[{
+                    "Type":"IEntity",
+                    "Name":"_entity"
+                }],
+            "AfterMethod":" => DataLayer.Get(_entity);",
+            "MethodContent":"NONE"
+        }]
+}
